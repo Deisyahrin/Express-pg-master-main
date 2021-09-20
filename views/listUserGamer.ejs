@@ -1,0 +1,81 @@
+<!doctype html>
+    <html lang="en">
+      <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <title>DataUserGame</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <style>
+          .btn btn-danger {
+
+          }
+        </style>
+      </head>
+      <body>
+        <!-- <p>Welcome to <%= user %></p> -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">id</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let i=0; i<user.length; i++) {  %>
+            <tr>
+              <td><%= i+1%></td>
+              <td><%= user[i].id %></td>
+              <td><%= user[i].username %></td>
+              <td><%= user[i].email %></td>
+
+          <!-- Tombol di bawah digunakan untuk menghilangkan data user yang bersangkutan -->
+          <td><button type="button" class="btn btn-danger" onclick="deleteUser(<%= user[i].id %>)">Delete</button></td>
+          <td><button type="button" id="biodata" class="btn btn-success" onclick="editUser(<%= user[i].id %>)" href="/users-biodata/views" >
+            <a href="/users-biodata/views"></a>Edit</a>
+          </button></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <script>
+      // Ini adalah fungsi yang digunakan untuk menghilangkan data user
+      // Yang nantinya ditempel ke tombol button delete di atas
+      function deleteUser(id){
+        // alert('Apakah anda yakin ingin melenyapkan user ini?')
+        fetch('/users-biodata/' + id, {
+              method: 'DELETE',
+            })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
+      }
+
+      function editUser(id){
+        // alert('Apakah anda yakin ingin melenyapkan user ini?')
+        fetch('/users-biodata/' + id, {
+              method: 'UPDATE',
+            })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
+      }
+
+      
+    </script>
+
+    <div class = 'register'>
+      <a href="/users">Register</a>
+    </div>
+    <div class = 'history'>
+      <a href="/users-history">History</a>
+    </div>
+    <div class = 'biodata'>
+      <a href="/users-biodata">Biodata</a>
+    </div>
+    
+  </body>
+</html>

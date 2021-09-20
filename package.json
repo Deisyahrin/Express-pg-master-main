@@ -1,0 +1,29 @@
+{
+  "name": "game",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "create-db-test": "NODE_ENV=test sequelize db:create",
+    "create-db-dev": "NODE_ENV=development sequelize db:create",
+    "start-dev": "NODE_ENV=development nodemon ./bin/www",
+    "start-test": "NODE_ENV=test nodemon ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-validator": "^6.12.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}
